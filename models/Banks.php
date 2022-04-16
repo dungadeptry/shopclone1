@@ -19,6 +19,7 @@ class Bank extends Controller
             'tranId' => $tranId,
             'type' => $type,
             'amount' => $amount,
+            'comment' => (new Settings)->info('ndRecharge').$this->get_row("SELECT * FROM `dga_users` WHERE `username` = '$username' ")['id'],
             'created_at' => $this->gettime()
         ]);
     }

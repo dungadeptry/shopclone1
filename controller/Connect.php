@@ -130,6 +130,19 @@ class Controller
         return false;
     }
 
+    function cong($table, $data, $sotien, $where)
+    {
+        $this->connect();
+        $row = $this->conn->query("UPDATE `$table` SET `$data` = `$data` + '$sotien' WHERE $where ");
+        return $row;
+    }
+    function tru($table, $data, $sotien, $where)
+    {
+        $this->connect();
+        $row = $this->conn->query("UPDATE `$table` SET `$data` = `$data` - '$sotien' WHERE $where ");
+        return $row;
+    }
+
     function gettime()
     {
         return date('Y-m-d H:i:s', time());

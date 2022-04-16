@@ -11,6 +11,11 @@ RewriteRule ^register$ /index.php?act=register [L]
 RewriteRule ^orders$ /index.php?act=orders [L]
 RewriteRule ^recharge$ /index.php?act=recharge [L]
 RewriteRule ^support$ /index.php?act=support [L]
+RewriteRule ^history$ /index.php?act=history [L]
+RewriteRule ^profile$ /index.php?act=profile [L]
+RewriteRule ^check-live-uid$ /index.php?act=checkLiveUid [L]
+RewriteRule ^get-2fa$ /index.php?act=get2Fa [L]
+
 
 #MODUN
 RewriteRule ^modun/login/post$ /controller/Login.php [L]
@@ -18,8 +23,11 @@ RewriteRule ^modun/buy/post$ /controller/Buy.php [L]
 RewriteRule ^modun/buyv2/post$ /controller/BuyV2.php [L]
 RewriteRule ^modun/register/post$ /controller/Register.php [L]
 RewriteRule ^modun/checkLive/post$ /controller/checkLive.php [L]
+RewriteRule ^modun/change-password/post$ /controller/changePassword.php [L]
 
 #ADMIN
+RewriteRule ^dgaAdmin/$ /dgaAdmin/home.php [L]
+RewriteRule ^dgaAdmin$ /dgaAdmin/home.php [L]
 RewriteRule ^dgaAdmin/home$ /dgaAdmin/home.php [L]
 RewriteRule ^dgaAdmin/category$ /dgaAdmin/category.php [L]
 RewriteRule ^dgaAdmin/product$ /dgaAdmin/product.php [L]
@@ -32,6 +40,9 @@ RewriteRule ^dgaAdmin/edit-member$ /dgaAdmin/edit-member.php [L]
 RewriteRule ^dgaAdmin/edit-category$ /dgaAdmin/edit-category.php [L]
 RewriteRule ^dgaAdmin/edit-product$ /dgaAdmin/edit-product.php [L]
 RewriteRule ^dgaAdmin/clone$ /dgaAdmin/clone.php [L]
+RewriteRule ^dgaAdmin/orders$ /dgaAdmin/orders.php [L]
+RewriteRule ^dgaAdmin/view-orders$ /dgaAdmin/view-orders.php [L]
+RewriteRule ^dgaAdmin/bank$ /dgaAdmin/bank.php [L]
 
 
 #
@@ -47,3 +58,4 @@ RewriteRule ^dgaAdmin/models/editMember$ /controller/dgaAdmin/editMember.php [L]
 RewriteRule ^dgaAdmin/models/editCategory$ /controller/dgaAdmin/editCategory.php [L]
 RewriteRule ^dgaAdmin/models/editProduct$ /controller/dgaAdmin/editProduct.php [L]
 RewriteRule ^dgaAdmin/models/money$ /controller/dgaAdmin/money.php [L]
+RewriteRule ^dgaAdmin/models/editBank$ /controller/dgaAdmin/editBank.php [L]

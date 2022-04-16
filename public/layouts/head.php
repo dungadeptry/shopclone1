@@ -29,7 +29,8 @@
     <!-- <link rel="stylesheet" id="css-main" href="/public/assets/css/dashmix.min.css?v=<?=(new Settings)->info('version');?>"> -->
     <link rel="stylesheet" id="css-main" href="/public/assets/css/custom.css?v=<?=(new Settings)->info('version');?>">
     <link rel="stylesheet" id="css-main" href="/public/assets/css/dashmix.css?v=<?=(new Settings)->info('version');?>">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.23.0/js/msal-browser.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css?v=<?=(new Settings)->info('version');?>" rel="stylesheet" type="text/css" />
     <style>
     .sweet-alert {

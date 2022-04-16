@@ -11,6 +11,7 @@
 class Func extends Controller
 {
 
+
     public function xss($data)
     {
         $data = str_replace(array('&amp;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;lt;', '&amp;gt;'), $data);
@@ -123,6 +124,8 @@ class Func extends Controller
                 header('Location: /login');
             } else if ($user->info('admin') != 1) {
                 if (!isset($_SESSION['username'])) {
+                    header('Location: /login');
+                } else if ($user->info('banned') != 0) {
                     header('Location: /login');
                 }
             }
@@ -254,5 +257,19 @@ class Func extends Controller
         elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
 
         return 'Other';
+    }
+
+    function parse_order_id($des)
+    {
+        $MEMO_PREFIX = (new Settings)->info('ndRecharge');
+        $re = '/' . $MEMO_PREFIX . '\d+/im';
+        preg_match_all($re, $des, $matches, PREG_SET_ORDER, 0);
+        if (count($matches) == 0)
+            return null;
+        // Print the entire match result
+        $orderCode = $matches[0][0];
+        $prefixLength = strlen($MEMO_PREFIX);
+        $orderId = intval(substr($orderCode, $prefixLength));
+        return $orderId;
     }
 }

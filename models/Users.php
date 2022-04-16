@@ -102,4 +102,11 @@ class Users extends Controller
             'total_money' => $this->info('money') + $money
         ), " `username` = '" . $this->username . "' ");
     }
+
+    public function savePasssword($password)
+    {
+        $this->update("dga_users", array(
+            'password' => md5($password),
+        ), " `username` = '" . $this->username . "' ");
+    }
 }

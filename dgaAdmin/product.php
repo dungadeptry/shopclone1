@@ -213,5 +213,24 @@ if (isset($_GET['token'])) {
         });
         return false;
     });
+    $(document).ready(function() {
+        $("#dga-table").DataTable({
+            responsive: true,
+            language: {
+                search: "Tìm kiếm",
+                zeroRecords: "<center>Không tìm thấy kết quả dữ liệu</center>",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                infoEmpty: "Hiển thị 0 đến 0 của 0 mục",
+                lengthMenu: "Hiển thị _MENU_ mục",
+                infoFiltered: "(Được lọc từ _MAX_ mục)",
+                loadingRecords: "Đang lấy dữ liệu...",
+                paginate: {
+                    previous: "<i class='las la-chevron-left'></i>",
+                    next: "<i class='las la-chevron-right'></i>",
+                },
+                emptyTable: "<center>Không có dữ liệu để hiển thị</center>",
+            },
+        });
+    });
 </script>
 <?php require_once "./layouts/meta.php"; ?>

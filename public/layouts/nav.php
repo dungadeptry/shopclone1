@@ -31,7 +31,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link" href="/index.php?act=orders&t=<?= strtolower($row['name']); ?>">
+                                        <a class="nav-main-link" href="/index.php?act=orders&t=<?= strtolower($product['name']); ?>">
                                             <i class="nav-main-link-icon fa fa-history"></i>
                                             <span class="nav-main-link-name">Lịch sử mua <?= $product['name']; ?></span>
                                         </a>
@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="history.php"><i class="nav-main-link-icon fa fa-history"></i>
+                        <a class="nav-main-link" href="/history"><i class="nav-main-link-icon fa fa-history"></i>
                             <span class="nav-main-link-name">Lịch sử nạp tiền</span>
                         </a>
                     </li>
@@ -56,22 +56,17 @@
                             <span class="nav-main-link-name">Hỗ trợ</span>
                         </a>
                     </li>
-                    <!-- <li class="nav-main-heading">BM TOOLS</li>
+                    <li class="nav-main-heading">TOOLS</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="check-limit-bm.php"><i class="nav-main-link-icon fa fa-hand-holding"></i>
-                            <span class="nav-main-link-name">Check Limit BM</span>
+                        <a class="nav-main-link" href="/get-2fa"><i class="nav-main-link-icon fa fa-lock"></i>
+                            <span class="nav-main-link-name">GET 2FA</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="check-live-bm.php"><i class="nav-main-link-icon fa fa-hand-holding"></i>
-                            <span class="nav-main-link-name">Check Live BM</span>
+                        <a class="nav-main-link" href="/check-live-uid"><i class="nav-main-link-icon fab fa-facebook-f"></i>
+                            <span class="nav-main-link-name">Check Live Uid</span>
                         </a>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link" href="checkliveid.php"><i class="nav-main-link-icon fa fa-hand-holding"></i>
-                            <span class="nav-main-link-name">Check Live UID</span>
-                        </a>
-                    </li> -->
                 </ul>
             </div>
         </nav>
@@ -84,7 +79,7 @@
                 <div>
                     <div>
                         <div class="dropdown d-inline-block">
-                            <button type="button" class="btn btn-hero-success d-none d-md-inline-block">Số dư: <?=number_format($user->info('money'));?>đ</button> <a href="charge.php" class="btn btn-hero-info">Nạp Tiền</a>
+                            <button type="button" class="btn btn-hero-success d-none d-md-inline-block">Số dư: <?=number_format($user->info('money'));?> VNĐ</button> <a href="/recharge" class="btn btn-hero-info">Nạp Tiền</a>
                             <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-fw fa-user d-sm-none"></i>
                                 <span class="d-none d-sm-inline-block"><?=$user->info('username');?></span>
                                 <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>

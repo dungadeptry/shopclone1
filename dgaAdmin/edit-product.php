@@ -34,9 +34,6 @@ if ($_GET['id']) {
                                 <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_product` ORDER BY `arrange` ASC") as $row) { ?>
                                     <div class="d-flex flex-stack py-4">
                                         <div class="d-flex align-items-center">
-                                            <div class="symbol symbol-40px symbol-circle">
-                                                <img alt="DUNGA" src="<?= (new Settings)->info('domain') . (new Controller)->get_row("SELECT * FROM `dga_category` WHERE `token` = '" . $row['category'] . "' ")['images']; ?>" />
-                                            </div>
                                             <div class="ms-4">
                                                 <a href="/dgaAdmin/edit-product?id=<?= $row['id']; ?>" class="fs-6 fw-bolder text-<?=(new Func)->active('/dgaAdmin/edit-product?id='.$row['id'].'', 'danger', 'dark');?> text-hover-primary mb-2 "><?= $row['name']; ?> </a>
                                                 <div class="fw-bold fs-7 text-muted"><?= $row['token']; ?></div>
@@ -71,7 +68,7 @@ if ($_GET['id']) {
                                         <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Thư mục cha để rỗng - thư mục con thì lựa thư mục cha" aria-label="Thư mục cha để rỗng - thư mục con thì lựa thư mục cha"></i>
                                     </label>
                                     <select class="form-select form-select-solid" data-control="select2" name="category">
-                                        <option value="0">Thư mục</option>
+                                        <option value="<?=$product['category'];?>"> <?=(new Controller)->get_row("SELECT * FROM `dga_category` WHERE `token` = '".$product['category']."'")['name'];?> (*)</option>
                                         <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_category` WHERE `category` IS NOT NULL ORDER BY `arrange` ASC") as $row) { ?>
                                             <option value="<?= $row['token']; ?>"><?= $row['name']; ?></option>
                                         <?php } ?>

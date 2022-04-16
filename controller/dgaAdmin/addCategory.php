@@ -18,10 +18,14 @@ if ($_POST) {
         if (!($_FILE["thumb"]["name"])) {
             $rand = (new Func)->random("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789", 16);
             $arr = explode(".", $_FILES["thumb"]["name"]);
-            $uploads_dir = '../../storage/images';
-            $url_thumb = "/" . $rand . "." . end($arr);
-            move_uploaded_file($_FILES['thumb']['tmp_name'], $uploads_dir . $url_thumb);
-            $thumb = "/storage/images".$url_thumb;
+            if (empty(end($arr))) {
+                $thumb = '';
+            } else {
+                $uploads_dir = '../../storage/images';
+                $url_thumb = "/" . $rand . "." . end($arr);
+                move_uploaded_file($_FILES['thumb']['tmp_name'], $uploads_dir . $url_thumb);
+                $thumb = "/storage/images" . $url_thumb;
+            }
         } else {
             $thumb = '';
         }
@@ -31,8 +35,7 @@ if ($_POST) {
         } else {
             (new Category)->insertChild($name, $thumb, $category);
         }
-        (new Func)->responseForm1("Thêm thư mục ".$name. " thành công", "success");
-        
+        (new Func)->responseForm1("Thêm thư mục " . $name . " thành công", "success");
     } else {
         (new Func)->responseForm1("Bạn không thể thực hiện bây giờ", "error");
     }

@@ -32,13 +32,19 @@ if ($_GET['id']) {
                         <div class="card-body pt-5" id="kt_contacts_list_body">
                             <div class="scroll-y me-n5 pe-5 h-300px h-xl-auto" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_contacts_list_header" data-kt-scroll-wrappers="#kt_content, #kt_contacts_list_body" data-kt-scroll-stretch="#kt_contacts_list, #kt_contacts_main" data-kt-scroll-offset="5px">
                                 <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_category` ORDER BY `arrange` ASC") as $row) { ?>
+                                    <?php if ($row['images'] == '' && $row['category'] != null) {
+                                        $img = (new Controller)->get_row("SELECT * FROM `dga_category` WHERE `token` = '" . $row['category'] . "' ")['images'];
+                                    } else if ($row['category'] == null) {
+                                        $img = $row['images'];
+                                    }
+                                    ?>
                                     <div class="d-flex flex-stack py-4">
                                         <div class="d-flex align-items-center">
                                             <div class="symbol symbol-40px symbol-circle">
-                                                <img alt="DUNGA" src="<?= (new Settings)->info('domain') . $row['images']; ?>" />
+                                                <img alt="DUNGA" src="<?= (new Settings)->info('domain') . $img; ?>" />
                                             </div>
                                             <div class="ms-4">
-                                                <a href="/dgaAdmin/edit-category?id=<?= $row['id']; ?>" class="fs-6 fw-bolder text-<?=(new Func)->active('/dgaAdmin/edit-category?id='.$row['id'].'', 'danger', 'dark');?> text-hover-primary mb-2 "><?= $row['name']; ?> </a>
+                                                <a href="/dgaAdmin/edit-category?id=<?= $row['id']; ?>" class="fs-6 fw-bolder text-<?= (new Func)->active('/dgaAdmin/edit-category?id=' . $row['id'] . '', 'danger', 'dark'); ?> text-hover-primary mb-2 "><?= $row['name']; ?> </a>
                                                 <div class="fw-bold fs-7 text-muted"><?= $row['token']; ?></div>
                                             </div>
                                         </div>

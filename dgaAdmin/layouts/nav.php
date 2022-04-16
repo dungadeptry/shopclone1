@@ -71,6 +71,15 @@
                             </div>
 
                             <div class="menu-item">
+                                <a class="menu-link <?=(new Func)->active('/dgaAdmin/orders', 'active', '');?>" href="/dgaAdmin/orders">
+                                    <span class="menu-icon">
+                                        <i class="las la-cart-arrow-down fs-2"></i>
+                                    </span>
+                                    <span class="menu-title">Đơn hàng</span>
+                                </a>
+                            </div>
+
+                            <div class="menu-item">
                                 <div class="menu-content pt-8 pb-2">
                                     <span class="menu-section text-muted text-uppercase fs-8 ls-1">MEMBER</span>
                                 </div>
@@ -97,6 +106,14 @@
                                 </div>
                             </div>
                             <div class="menu-item">
+                                <a class="menu-link <?=(new Func)->active('/dgaAdmin/bank', 'active', '');?>" href="/dgaAdmin/bank">
+                                    <span class="menu-icon">
+                                        <i class="las la-university fs-2"></i>
+                                    </span>
+                                    <span class="menu-title">Ngân hàng</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
                                 <a class="menu-link <?=(new Func)->active('/dgaAdmin/setting', 'active', '');?>" href="/dgaAdmin/setting">
                                     <span class="menu-icon">
                                         <i class="las la-cogs fs-2"></i>
@@ -107,11 +124,11 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-                    <a href="/dgaAdmin/../demo1/documentation/getting-started.html"
+                <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
+                    <a href="https://zalo.me/0395562711"
                         class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                        data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
-                        <span class="btn-label">Docs &amp; Components</span>
+                        data-bs-dismiss-="click" title="Hỗ trợ - tư vấn">
+                        <span class="btn-label">DUNGA</span>
                         <span class="svg-icon btn-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -125,7 +142,7 @@
                             </svg>
                         </span>
                     </a>
-                </div> --}}
+                </div>
             </div>
             <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
                 <div id="kt_header" style="" class="header align-items-stretch">
