@@ -7,7 +7,7 @@ ErrorDocument 404 /ErrorDocument/404.php
 #CLIENT
 RewriteRule ^home$ /index.php?act=home [L]
 RewriteRule ^login$ /index.php?act=login [L]
-RewriteRule ^register$ /public/auth/register.php [L]
+RewriteRule ^register$ /index.php?act=register [L]
 RewriteRule ^orders$ /index.php?act=orders [L]
 RewriteRule ^recharge$ /index.php?act=recharge [L]
 RewriteRule ^support$ /index.php?act=support [L]
@@ -15,6 +15,8 @@ RewriteRule ^support$ /index.php?act=support [L]
 #MODUN
 RewriteRule ^modun/login/post$ /controller/Login.php [L]
 RewriteRule ^modun/buy/post$ /controller/Buy.php [L]
+RewriteRule ^modun/buyv2/post$ /controller/BuyV2.php [L]
+RewriteRule ^modun/register/post$ /controller/Register.php [L]
 RewriteRule ^modun/checkLive/post$ /controller/checkLive.php [L]
 
 #ADMIN
@@ -23,7 +25,14 @@ RewriteRule ^dgaAdmin/category$ /dgaAdmin/category.php [L]
 RewriteRule ^dgaAdmin/product$ /dgaAdmin/product.php [L]
 RewriteRule ^dgaAdmin/arrange$ /dgaAdmin/arrange.php [L]
 RewriteRule ^dgaAdmin/account$ /dgaAdmin/account.php [L]
+RewriteRule ^dgaAdmin/money$ /dgaAdmin/money.php [L]
 RewriteRule ^dgaAdmin/setting$ /dgaAdmin/setting.php [L]
+RewriteRule ^dgaAdmin/member$ /dgaAdmin/member.php [L]
+RewriteRule ^dgaAdmin/edit-member$ /dgaAdmin/edit-member.php [L]
+RewriteRule ^dgaAdmin/edit-category$ /dgaAdmin/edit-category.php [L]
+RewriteRule ^dgaAdmin/edit-product$ /dgaAdmin/edit-product.php [L]
+RewriteRule ^dgaAdmin/clone$ /dgaAdmin/clone.php [L]
+
 
 #
 RewriteRule ^dgaAdmin/models/arrangeFather$ /controller/dgaAdmin/arrangeFather.php [L]
@@ -33,3 +42,8 @@ RewriteRule ^dgaAdmin/models/addCategory$ /controller/dgaAdmin/addCategory.php [
 RewriteRule ^dgaAdmin/models/addProduct$ /controller/dgaAdmin/addProduct.php [L]
 RewriteRule ^dgaAdmin/models/removeProduct$ /controller/dgaAdmin/removeProduct.php [L]
 RewriteRule ^dgaAdmin/models/addAccount$ /controller/dgaAdmin/addAccount.php [L]
+RewriteRule ^dgaAdmin/models/editSetting$ /controller/dgaAdmin/editSetting.php [L]
+RewriteRule ^dgaAdmin/models/editMember$ /controller/dgaAdmin/editMember.php [L]
+RewriteRule ^dgaAdmin/models/editCategory$ /controller/dgaAdmin/editCategory.php [L]
+RewriteRule ^dgaAdmin/models/editProduct$ /controller/dgaAdmin/editProduct.php [L]
+RewriteRule ^dgaAdmin/models/money$ /controller/dgaAdmin/money.php [L]

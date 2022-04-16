@@ -20,6 +20,7 @@
 <script src="<?=(new Settings)->info('domain');?>/dgaAdmin/assets/plugins/global/plugins.bundle.js"></script>
 <script src="<?=(new Settings)->info('domain');?>/dgaAdmin/assets/js/scripts.bundle.js"></script>
 <script src="<?=(new Settings)->info('domain');?>/dgaAdmin/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?=(new Settings)->info('domain');?>/dgaAdmin/assets/js/custom/intro.js"></script>
 <script src="<?=(new Settings)->info('domain');?>/dgaAdmin/assets/js/dunga.js"></script>
 <script src="<?=(new Settings)->info('domain');?>/dgaAdmin/assets/plugins/custom/typedjs/typedjs.bundle.js"></script>

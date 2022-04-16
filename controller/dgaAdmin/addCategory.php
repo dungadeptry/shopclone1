@@ -13,9 +13,9 @@ if ($_POST) {
         $category = (new Func)->xss($_POST['category']);
 
         if (empty($name)) {
-            (new Func)->responseForm1("Tên danh mục không được bỏ trống", "success");
+            (new Func)->responseForm1("Tên danh mục không được bỏ trống", "error");
         }
-        if (!empty($_FILE["thumb"]["name"])) {
+        if (!($_FILE["thumb"]["name"])) {
             $rand = (new Func)->random("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789", 16);
             $arr = explode(".", $_FILES["thumb"]["name"]);
             $uploads_dir = '../../storage/images';

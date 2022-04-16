@@ -24,27 +24,7 @@
 
           <div class="block-content">
 
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right">
-              FILE ĐÃ MUA WEB SẼ CHỈ LƯU TỐI ĐA 2 THÁNG, TRÁNH HACKER CHIẾM ĐOẠT DỮ LIỆU, QUÝ KHÁCH VUI LÒNG TỰ LƯU DỮ LIỆU SAU KHI MUA
-              </span>
-              <br><span class="text-danger font-size-lg">THÔNG BÁO HỆ THỐNG: NẠP TIỀN AUTO ĐANG LỖI, VUI LÒNG LIÊN HỆ ADMIN SAU KHI CHUYỂN KHOẢN.</span>
-            </div>
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right">
-              Nếu cần yêu cầu check nạp tiền và bảo hành <a class="link-fx" href="support.php" target="_blank">--&gt; Tham gia nhóm Zalo hỗ trợ &lt;--</a>
-              <br>Nhận thông báo mỗi khi Web có nguyên liệu bạn cần <a class="link-fx" href="support.php" target="_blank">--&gt; Tham gia nhóm Telegram &lt;--</a>
-            </div>
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right">
-              Chỉ Bảo hành HCQC nếu có thông báo hạn chế trước ngày giao dịch, quý khách không được tự ý kháng TK die, nếu không sẽ từ chối bảo hành.
-              <br> <span class="text-danger font-size-lg">QUÝ KHÁCH VUI LÒNG ĐỔI LUÔN PASS EMAIL SAU KHI MUA VIA TRÁNH HACKER VIA LẠI BẰNG EMAIL DO WEB BÁN MAIL BỊ LỘ.</span>
-              <br><span class="text-danger font-size-lg"> Đọc kỹ <a href="support.php" class="link-fx text-danger">CHÍNH SÁCH BẢO HÀNH</a> trước khi mua.</span>
-            </div>
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right">
-              <span class="text-danger font-size-lg">KHUYẾN MÃI 5% KHI NẠP MIN 2M, KHUYẾN MÃI 10% KHI NẠP MIN 5M </span>
-              <br><span> CHỈ NẠP VỪA ĐỦ SỐ TIỀN CẦN MUA. CHÚNG TÔI SẼ KHÔNG HOÀN TIỀN TỪ USER CỦA BẠN VÌ BẤT KÌ LÝ DO GÌ! CẢM ƠN QUÝ KHÁCH ĐÃ CHỌN BMVIA </span>
-            </div>
+            <?= (new Settings)->info('notification'); ?>
           </div>
 
         </div>
@@ -90,7 +70,9 @@
 
                         <span class="d-flex align-items-center">
 
-                          <div class="item item-circle bg-black-5 text-primary-light" style="min-width: 60px;"><strong><?= number_format((new Controller)->num_rows(" SELECT * FROM `dga_account` WHERE `product` = '" . $rows['token'] . "' AND `code` IS NULL AND `status` = '1'")); ?></strong></div>
+                          <div class="item item-circle bg-black-5 text-primary-light" style="min-width: 60px;">
+                            <strong><?= number_format((new Controller)->num_rows(" SELECT * FROM `dga_account` WHERE `product` = '" . $rows['token'] . "' AND `code` IS NULL AND `status` = '1'")); ?></strong>
+                          </div>
 
                           <span class="text-truncate ml-2">
 
@@ -100,7 +82,8 @@
 
                             <i style="position:absolute;right:5px;bottom:10px;" class="fa fa-question-circle text-muted" data-toggle="tooltip" data-placement="top" title="<?= $rows['details']; ?>"></i>
 
-                            <span class="d-block font-size-sm text-muted"><i class="font-w400" style="font-size: 0.77rem;"><del>0 VNĐ</del></i><strong class="text-danger"> » <span id="<?= strtolower($row['name']); ?>_price_<?= $rows['id']; ?>"><?= number_format($rows['price']); ?><span> VNĐ</strong></span>
+                            <span class="d-block font-size-sm text-muted"><i class="font-w400" style="font-size: 0.77rem;"><del>0 VNĐ</del></i><strong class="text-danger"> » <span id="<?= strtolower($row['name']); ?>_price_<?= $rows['id']; ?>"><?= number_format($rows['price']); ?><span>
+                                    VNĐ</strong></span>
 
                           </span>
 
@@ -165,134 +148,21 @@
           <div class="block-content">
 
 
-            <!-- loop -->
+            <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_bank` ORDER BY `id` DESC LIMIT 10") as $row) { ?>
+              <!-- loop -->
 
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
+              <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right">
+                <b>
 
-                <font color="green"><img src="img/new.gif" height="18"> id***61</font> đã nạp số tiền + <font color="red"><em>1,100,000 VNĐ</em></font>
+                  <font color="green"><img src="/public/img/new.gif" height="18"> <?= substr($row['username'], 0, 4); ?>****</font> đã nạp số tiền +
+                  <font color="red"><em><?= number_format($row['amount']); ?> VNĐ</em></font>
 
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="15:52:06 - 03/04/2022"><em>
+                </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="15:52:06 - 03/04/2022"><em>
 
-                    3 giờ trước</em></span></span></div>
+                      <?= (new Func)->timeAgo(strtotime($row['created_at'])); ?></em></span></span>
+              </div>
 
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***12</font> đã nạp số tiền + <font color="red"><em>100,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="15:08:06 - 03/04/2022"><em>
-
-                    4 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***69</font> đã nạp số tiền + <font color="red"><em>50,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="14:48:05 - 03/04/2022"><em>
-
-                    4 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***07</font> đã nạp số tiền + <font color="red"><em>200,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="14:16:05 - 03/04/2022"><em>
-
-                    5 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***12</font> đã nạp số tiền + <font color="red"><em>50,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="14:16:04 - 03/04/2022"><em>
-
-                    5 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***90</font> đã nạp số tiền + <font color="red"><em>50,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="13:20:04 - 03/04/2022"><em>
-
-                    6 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***0</font> đã nạp số tiền + <font color="red"><em>100,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="11:22:04 - 03/04/2022"><em>
-
-                    7 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***90</font> đã nạp số tiền + <font color="red"><em>50,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="11:04:04 - 03/04/2022"><em>
-
-                    8 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***30</font> đã nạp số tiền + <font color="red"><em>280,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="07:36:05 - 03/04/2022"><em>
-
-                    11 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><img src="img/new.gif" height="18"> id***12</font> đã nạp số tiền + <font color="red"><em>50,000 VNĐ</em></font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="06:36:07 - 03/04/2022"><em>
-
-                    12 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
+            <?php } ?>
 
 
           </div>
@@ -322,134 +192,24 @@
           <div class="block-content">
 
 
-            <!-- loop -->
+            <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_orders` ORDER BY `id` DESC LIMIT 10") as $row) { ?>
 
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
+              <!-- loop -->
 
-                <font color="green"><i class="fa fa-bell"></i> la***oy</font>: <font color="red">Mua 10 Via VN New 50-1K Friend 2FA - tổng 180,000 VNĐ</font>
+              <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right">
+                <b>
 
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="17:15:00 - 03/04/2022"><em>
+                  <font color="green"><i class="fa fa-bell"></i> <?= substr($row['username'], 0, 4); ?>****</font>: <font color="red">Mua <?= number_format($row['amount']); ?>
+                    <?= (new Controller)->get_row("SELECT * FROM `dga_product` WHERE `token` = '" . $row['product'] . "' ")['name']; ?> - tổng <?= number_format($row['price']); ?> VNĐ</font>
 
-                    2 giờ trước</em></span></span></div>
+                </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="17:15:00 - 03/04/2022"><em>
 
-            <!-- /loop -->
+                      <?= (new Func)->timeAgo(strtotime($row['created_at'])); ?></em></span></span>
+              </div>
 
+              <!-- /loop -->
 
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> Le***son</font>: <font color="red">Mua 2 Via VN New 50-1K Friend 2FA - tổng 36,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="15:56:31 - 03/04/2022"><em>
-
-                    3 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> do***hu93</font>: <font color="red">Mua 60 Via VN New 50-1K Friend 2FA - tổng 1,080,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="15:52:13 - 03/04/2022"><em>
-
-                    3 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> Le***son</font>: <font color="red">Mua 1 Via VN Cổ 50-1K Friend 2FA - tổng 28,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="15:12:59 - 03/04/2022"><em>
-
-                    4 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> vi***nh123</font>: <font color="red">Mua 1 Via VN Cổ 50-1K Friend 2FA - tổng 28,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="14:18:48 - 03/04/2022"><em>
-
-                    5 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> da***at260915</font>: <font color="red">Mua 4 Via VN Cổ 50-1K Friend 2FA - tổng 112,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="14:18:05 - 03/04/2022"><em>
-
-                    5 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> py***nguyen</font>: <font color="red">Mua 25 Clone VN 2FA vr mail - tổng 50,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="13:30:47 - 03/04/2022"><em>
-
-                    5 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> py***nguyen</font>: <font color="red">Mua 25 Clone VN 2FA vr mail - tổng 50,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="12:31:22 - 03/04/2022"><em>
-
-                    6 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> vn***eytalk</font>: <font color="red">Mua 6 Via VN New 50-1K Friend 2FA - tổng 108,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="11:23:19 - 03/04/2022"><em>
-
-                    7 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
-
-
-            <!-- loop -->
-
-            <div class="font-w600 animated fadeIn bg-body-light border-3x px-3 py-2 mb-2 shadow-sm mw-100 border-left border-success rounded-right"><b>
-
-                <font color="green"><i class="fa fa-bell"></i> la***oy</font>: <font color="red">Mua 10 Via VN New 50-1K Friend 2FA - tổng 180,000 VNĐ</font>
-
-              </b><span style="float: right;"><span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="10:49:06 - 03/04/2022"><em>
-
-                    8 giờ trước</em></span></span></div>
-
-            <!-- /loop -->
+            <?php } ?>
 
 
           </div>

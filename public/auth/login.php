@@ -25,9 +25,6 @@
                                                 <input type="checkbox" class="custom-control-input" id="login-remember-me" name="remember">
                                                 <label class="custom-control-label" for="login-remember-me">Ghi nhớ</label>
                                             </div>
-                                            <div class="font-w600 font-size-sm py-1">
-                                                <a href="https://vlclone.com/forgot-password">Quên mật khẩu?</a>
-                                            </div>
                                         </div>
                                         <div class="form-group text-center">
                                             <button type="submit" class="btn btn-hero-primary">
@@ -35,7 +32,7 @@
                                         </div>
                                     </form>
                                     <div class="font-w600 font-size-sm py-1 text-center">
-                                        Chưa có tài khoản? <a href="https://vlclone.com/register">Đăng ký</a>
+                                        Chưa có tài khoản? <a href="/register">Đăng ký</a>
                                     </div>
                                 </div>
                             </div>

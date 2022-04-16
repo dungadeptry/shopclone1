@@ -12,16 +12,7 @@
                 <h5 class="text-primary">Tỷ giá: 1 VNĐ = 1 coin</h5>
               </div>
               <div class="col-md-12">
-                <div class="alert text-white bg-danger  mb-3" role="alert">- Bạn vui lòng chuyển
-                  khoản
-                  chính
-                  xác
-                  nội dung để được cộng tiền nhanh nhất.<br>
-                  - Nếu sau 10 phút từ khi tiền trong tài khoản của bạn bị trừ mà vẫn chưa được
-                  cộng
-                  tiền vui liên hệ Admin để được hỗ trợ.<br>
-                  - Vui lòng không nạp từ bank khác qua bank này (tránh lỗi).
-                </div>
+                <div class="alert text-white bg-danger  mb-3" role="alert"><?=(new Settings)->info('noteRecharge');?></div>
               </div>
               <div class="col-md-12">
                 <div class="alert text-white bg-warning  mb-3" role="alert"><center>Nạp tối thiểu <?=number_format((new Settings)->info('min_recharge'));?> VNĐ</center></div>

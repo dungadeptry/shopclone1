@@ -56,7 +56,7 @@
                             <span class="nav-main-link-name">Hỗ trợ</span>
                         </a>
                     </li>
-                    <li class="nav-main-heading">BM TOOLS</li>
+                    <!-- <li class="nav-main-heading">BM TOOLS</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="check-limit-bm.php"><i class="nav-main-link-icon fa fa-hand-holding"></i>
                             <span class="nav-main-link-name">Check Limit BM</span>
@@ -71,7 +71,7 @@
                         <a class="nav-main-link" href="checkliveid.php"><i class="nav-main-link-icon fa fa-hand-holding"></i>
                             <span class="nav-main-link-name">Check Live UID</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>
@@ -84,7 +84,7 @@
                 <div>
                     <div>
                         <div class="dropdown d-inline-block">
-                            <button type="button" class="btn btn-hero-success d-none d-md-inline-block">Số dư: 0đ</button> <a href="charge.php" class="btn btn-hero-info">Nạp Tiền</a>
+                            <button type="button" class="btn btn-hero-success d-none d-md-inline-block">Số dư: <?=number_format($user->info('money'));?>đ</button> <a href="charge.php" class="btn btn-hero-info">Nạp Tiền</a>
                             <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-fw fa-user d-sm-none"></i>
                                 <span class="d-none d-sm-inline-block"><?=$user->info('username');?></span>
                                 <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
@@ -92,8 +92,7 @@
                             <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
                                 <div class="bg-primary-darker rounded-top font-w600 text-white text-center p-3">Thông tin tài khoản</div>
                                 <div class="p-2">
-                                    <a class="dropdown-item" href="profile.php"><i class="far fa-fw fa-user mr-1"></i> Tài khoản</a>
-                                    <a class="dropdown-item" href="history.php"> <i class="far fa-fw fa-file-alt mr-1"></i> Lịch sử</a>
+                                    <a class="dropdown-item" href="/profile"><i class="far fa-fw fa-user mr-1"></i> Tài khoản</a>
                                     <div role="separator" class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="logout.php"> <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Đăng xuất</a>
                                 </div>

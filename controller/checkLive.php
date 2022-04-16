@@ -53,6 +53,7 @@ if ($_POST) {
                 (new Func)->responseForm1("Đã xong đợi xuất clone", "done");
             }
         }
+        
     } else {
         (new Func)->responseForm1("Bạn không thể thực hiện bây giờ", "error");
     }

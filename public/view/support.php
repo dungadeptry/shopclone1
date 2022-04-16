@@ -67,40 +67,7 @@
                         <p class="text-white text-uppercase font-size-sm font-w700">Bảo hành 24h</p>
                     </div>
                     <div class="block-content block-content-full">
-                        <div class="row">
-                            <table class="table table-borderless table-hover">
-                                <tbody>
-                                    <tr>
-                                        <td> <strong>BM bị cấm quảng cáo doanh nghiệp (ko thể tạo tài khoản quảng cáo)</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Link BM cần sử dụng ngay trong tối đa 10 ngày</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Clone vừa mua về đăng nhập đã bị checkpoint</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Via sai pass sau khi mua được đổi 1 : 1</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Mua via các bạn vui lòng sử dụng ID PASS 2FA để đăng nhập, không sử dụng cookie, HD đăng nhập: https://youtu.be/QWbugt4bP-M</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Lúc mua via về vui lòng đăng nhập tất cả tài khoản để kiểm tra pass, checkpoint. Tất cả nick sau 24h giao dịch không kiểm tra bên mình không chịu trách nhiệm</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Chỉ Bảo hành HCQC nếu có thông báo hạn chế trước ngày giao dịch, nếu thời gian bị hạn chế trung với ngày giao dịch thì không được bảo hành. Via bị HCQC hoặc die ADS không được tự tiện kháng.</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <?=(new Settings)->info('insurance');?>
                     </div>
                 </div>
             </div>
@@ -110,48 +77,7 @@
                         <p class="text-white text-uppercase font-size-sm font-w700">Từ chối bảo hành</p>
                     </div>
                     <div class="block-content block-content-full">
-                        <div class="row">
-                            <table class="table table-borderless table-hover">
-                                <tbody>
-                                    <tr>
-                                        <td> <strong>BM đã tạo tài khoản quảng cáo</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>BM đã thêm thông tin thanh toán (add thẻ)</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>BM xác minh bằng dịch vụ mail tạm thời (mail10m,...)</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Tài khoản bị checkpoint mất BM</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Tự ý đổi info Via</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Clone vừa mua về đăng nhập đã bị checkpoint nhưng đợi hôm sau mới báo.</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Phát hiện hàng lỗi nhưng tự xử lý</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Tự kháng Ads trước khi bảo hành</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <strong>Tự ý mở checkpoint via</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <?=(new Settings)->info('no_insurance');?>
                     </div>
                 </div>
             </div>

@@ -5,22 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>TỔNG KHO VIA - BM</title>
+    <title><?=(new Settings)->info('title_web');?></title>
 
-    <meta name="description" content="TỔNG KHO VIA - BM">
-    <meta name="author" content="smv.vn">
+    <meta name="description" content="<?=(new Settings)->info('title_web');?>">
+    <meta name="author" content="DUNGA">
     <meta name="robots" content="index, dofollow">
 
-    <meta property="og:title" content="TỔNG KHO VIA - BM">
-    <meta property="og:site_name" content="TỔNG KHO VIA - BM">
+    <meta property="og:title" content="<?=(new Settings)->info('title_web');?>">
+    <meta property="og:site_name" content="<?=(new Settings)->info('title_web');?>">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     
-    <link rel="shortcut icon" href="https://smv.vn/wp-content/uploads/2021/03/logtron.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://smv.vn/wp-content/uploads/2021/03/logtron.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://smv.vn/wp-content/uploads/2021/03/logtron.png">
+    <link rel="shortcut icon" href="<?=(new Settings)->info('favicon');?>">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?=(new Settings)->info('favicon');?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?=(new Settings)->info('favicon');?>">
     <!-- END Icons -->
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">

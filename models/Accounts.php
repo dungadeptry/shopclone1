@@ -13,7 +13,7 @@ class Account extends Controller
 
     public function checkClone($clone)
     {
-        if ($this->num_rows(" SELECT * FROM `dga_account` WHERE `details` = '$clone' ") == 0) {
+        if ($this->num_rows(" SELECT * FROM `dga_account` WHERE `uid` = '".explode('|', $clone)[0]."' ") == 0) {
             return true;
         } else {
             return false;
@@ -23,6 +23,7 @@ class Account extends Controller
     public function insertAccount($product, $clone)
     {
         $this->insert("dga_account", [
+            'uid' => explode('|', $clone)[0],
             'details' => $clone,
             'product' => $product,
             'status' => 1,
@@ -33,8 +34,9 @@ class Account extends Controller
 
     public function updateAccount($product, $clone)
     {
-        $id = $this->get_row(" SELECT * FROM `dga_account` WHERE `details` = '$clone' AND `code` IS NULL ")['id'];
+        $id = $this->get_row(" SELECT * FROM `dga_account` WHERE `uid` = '".explode('|', $clone)[0]."' AND `code` IS NULL ")['id'];
         $this->update("dga_account", array(
+            'uid' => explode('|', $clone)[0],
             'details' => $clone,
             'product' => $product,
             'status' => 1,
@@ -43,23 +45,13 @@ class Account extends Controller
         ), " `id` = '" . $id . "' ");
     }
 
-    public function updateAccountBuy($id, $code, $username, $status, $keyBuy)
+    public function updateAccountBuy($id, $status, $keyBuy)
     {
-        if ($code == NULL) {
-            $this->update("dga_account", array(
-                'status' => $status,
-                'keyBuy' => $keyBuy,
-                'updated_at' => $this->gettime(),
-            ), " `id` = '$id' ");
-        } else {
-            $this->update("dga_account", array(
-                'code' => $code,
-                'username' => $username,
-                'status' => $status,
-                'keyBuy' => $keyBuy,
-                'updated_at' => $this->gettime(),
-            ), " `id` = '$id' ");
-        }
+        $this->update("dga_account", array(
+            'status' => $status,
+            'keyBuy' => $keyBuy,
+            'updated_at' => $this->gettime(),
+        ), " `id` = '$id' ");
     }
 
     public function updateAccountDone($code, $key)
@@ -68,7 +60,7 @@ class Account extends Controller
             $this->update("dga_account", array(
                 'code' => $code,
                 'updated_at' => $this->gettime(),
-            ), " `id` = '".$row['id']."' ");
+            ), " `id` = '" . $row['id'] . "' ");
         }
         $this->update("dga_orders", array(
             'status' => 2, // XONG

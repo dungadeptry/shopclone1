@@ -28,7 +28,8 @@ class Users extends Controller
     private $created_at;
 
 
-    public function __construct($username) {
+    public function __construct($username)
+    {
         $this->username = $username;
     }
 
@@ -48,18 +49,57 @@ class Users extends Controller
             'ip' => $this->myip(),
             'UserAgent' => (new Mobile_Detect)->getUserAgent(),
             'otp' => NULL
-        ), " `username` = '".$this->username."' ");
+        ), " `username` = '" . $this->username . "' ");
     }
 
-    public function saveBuy($money) {
+    public function saveBuy($money)
+    {
 
         $this->update("dga_users", array(
             'money' => $this->info('money') - $money,
             'used_money' => $this->info('money') + $money
-        ), " `username` = '".$this->username."' ");
-
+        ), " `username` = '" . $this->username . "' ");
     }
 
+    public function insertUser($username, $password)
+    {
 
+        $this->insert("dga_users", [
+            'username' => $username,
+            'token' => (new Func)->random('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789', 16),
+            'password' => md5($password),
+            'money' => 0,
+            'total_money' => 0,
+            'used_money' => 0,
+            'ip' => $this->myip(),
+            'rank' => 'member',
+            'admin' => 0,
+            'UserAgent' => (new Mobile_Detect)->getUserAgent(),
+            'created_at' => $this->gettime()
+        ]);
+    }
 
+    public function saveUser($money, $total_money, $used_money, $level, $status)
+    {
+        $this->update("dga_users", array(
+            'money' => $money,
+            'total_money' => $total_money,
+            'used_money' => $used_money,
+            'rank' => $level,
+            'banned' => $status
+        ), " `username` = '" . $this->username . "' ");
+    }
+
+    public function removeUser($id)
+    {
+        $this->remove("dga_users", " `id` = '$id' ");
+    }
+
+    public function saveRecharge($money)
+    {
+        $this->update("dga_users", array(
+            'money' => $this->info('money') + $money,
+            'total_money' => $this->info('money') + $money
+        ), " `username` = '" . $this->username . "' ");
+    }
 }

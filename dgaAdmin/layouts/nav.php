@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link {{ active_class(if_route('admin.member'), 'active', '') }}" href="{{ route('admin.member') }}">
+                                <a class="menu-link <?=(new Func)->active('/dgaAdmin/member', 'active', '');?>" href="/dgaAdmin/member">
                                     <span class="menu-icon">
                                         <i class="las la-users fs-2"></i>
                                     </span>
@@ -84,7 +84,7 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link {{ active_class(if_route('admin.money'), 'active', '') }}" href="{{ route('admin.money') }}">
+                                <a class="menu-link <?=(new Func)->active('/dgaAdmin/money', 'active', '');?>" href="/dgaAdmin/money">
                                     <span class="menu-icon">
                                         <i class="las la-money-bill-wave-alt fs-2"></i>
                                     </span>
@@ -170,15 +170,15 @@
                                                     <img alt="Logo" src="https://img.icons8.com/fluency/48/000000/admin-settings-male.png" />
                                                 </div>
                                                 <div class="d-flex flex-column">
-                                                    <div class="fw-bolder d-flex align-items-center fs-5">{{ Auth::user()->username }}
+                                                    <div class="fw-bolder d-flex align-items-center fs-5">DUNGA
                                                         <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Admin</span>
                                                     </div>
-                                                    <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
+                                                    <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?=(new Settings)->info('token');?></a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="menu-item px-5">
-                                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
+                                            <a href="/logout.php" class="menu-link px-5">Sign Out</a>
                                         </div>
                                     </div>
                                 </div>

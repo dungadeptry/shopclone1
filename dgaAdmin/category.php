@@ -80,15 +80,45 @@ if (isset($_GET['token'])) {
                                 </div>
                                 <div class="separator mb-6"></div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
-                                    <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
-                                        <span class="indicator-label">Save</span>
-                                        <span class="indicator-progress">Please wait...
-                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <a href="/dgaAdmin/edit-category" class="btn btn-info w-100 me-3">Sửa danh mục</a>
+                                    <a href="/dgaAdmin/home" class="btn btn-danger me-3">Hủy</a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Thêm</span>
                                     </button>
                                 </div>
                                 <div></div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="dga-table" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                <thead>
+                                    <tr class="fw-bold fs-6 text-muted">
+                                        <th>THƯ MỤC</th>
+                                        <th>THƯ MỤC CHA</th>
+                                        <th>NGÀY TẠO</th>
+                                        <th>THAO TÁC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_category` ORDER BY `arrange` ASC") as $row) { ?>
+                                        <tr>
+                                            <td><?= $row['name']; ?></td>
+                                            <?php if ($row['category'] != null || $row['category'] != '') { ?>
+                                                <td><?= (new Controller)->get_row("SELECT * FROM `dga_category` WHERE `token` = '" . $row['category'] . "' ")['name']; ?></td>
+                                            <?php } else { ?>
+                                                <td>Không có</td>
+                                            <?php } ?>
+                                            <td><?= $row['created_at']; ?></td>
+                                            <td><a onclick="remove(<?= $row['id']; ?>)" class="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger">Xóa</a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -121,5 +151,39 @@ if (isset($_GET['token'])) {
         });
         return false;
     });
+
+    function remove(id) {
+        Swal.fire({
+            title: "Chắc chắn chứ?",
+            text: "Bạn xác nhận xóa danh mục này ra khỏi hệ thống?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Xóa",
+            cancelButtonText: "Hủy",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/dgaAdmin/models/editCategory",
+                    type: "POST",
+                    data: {
+                        type: 'remove',
+                        id: id
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+                        if (data.status === "error") {
+                            toastr["error"](data.message, "Thông báo")
+                        } else {
+                            toastr["success"](data.message, "Thông báo")
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
+                        }
+                    }
+                });
+            };
+        });
+    };
 </script>
 <?php require_once "./layouts/meta.php"; ?>

@@ -75,13 +75,13 @@ class Func extends Controller
     {
         $totalBank = 0;
         $totalCard = 0;
-        foreach ($this->get_list("SELECT * FROM `dga_bank` WHERE WEEK(created_at, 1) = WEEK(CURDATE(), 1) ") as $row) {
+        foreach ($this->get_list("SELECT * FROM `dga_bank` ") as $row) {
             $date = strtotime($row['created_at']);
             if (date('d', $date) == $day) {
                 $totalBank = $totalBank + $row['amount'];
             }
         }
-        foreach ($this->get_list("SELECT * FROM `dga_card` WHERE `status` = '0' AND WEEK(created_at, 1) = WEEK(CURDATE(), 1) ") as $row) {
+        foreach ($this->get_list("SELECT * FROM `dga_card` ") as $row) {
             $date = strtotime($row['created_at']);
             if (date('d', $date) == $day) {
                 $totalCard = $totalCard + $row['amount'];
@@ -93,15 +93,14 @@ class Func extends Controller
 
     function calTotalSpending($day)
     {
-        $totalBank = 0;
-        $totalCard = 0;
-        foreach ($this->get_list("SELECT * FROM `dga_orders` WHERE WEEK(created_at, 1) = WEEK(CURDATE(), 1) ") as $row) {
+        $total = 0;
+        foreach ($this->get_list("SELECT * FROM `dga_orders` ") as $row) {
             $date = strtotime($row['created_at']);
             if (date('d', $date) == $day) {
-                $totalBank = $totalBank + $row['price'];
+                $total = $total + $row['price'];
             }
         }
-        $total = ($totalBank + $totalCard) / 1000;
+        $total = $total / 1000;
         return $total;
     }
 
@@ -109,11 +108,14 @@ class Func extends Controller
     {
 
         if ($type == 'guest') {
+            if (isset($_SESSION['username'])) {
+                header('Location: /home');
+            }
         } else if ($type == 'auth') {
             if (!isset($_SESSION['username'])) {
                 header('Location: /login');
             } else {
-                // return $_SESSION['username'];
+                // header('Location: /home');
             }
         } else if ($type == 'isAdmin') {
             $user = new Users($_SESSION['username']);
@@ -167,7 +169,7 @@ class Func extends Controller
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $data = curl_exec($ch);
-        
+
         curl_close($ch);
         return $data;
     }
@@ -186,11 +188,71 @@ class Func extends Controller
         }
     }
 
-    function imgBank($type) {
+    function imgBank($type)
+    {
         if ($type == 'VIETCOMBANK') {
             return '/public/img/vietcombank-logo.png';
         } else if ($type == 'ACB') {
             return '/public/img/acb-logo.png';
         }
+    }
+
+    function timeAgo($time_ago)
+    {
+        $time_ago   = date("Y-m-d H:i:s", $time_ago);
+        $time_ago   = strtotime($time_ago);
+        $cur_time   = time();
+        $time_elapsed   = $cur_time - $time_ago;
+        $seconds    = $time_elapsed;
+        $minutes    = round($time_elapsed / 60);
+        $hours      = round($time_elapsed / 3600);
+        $days       = round($time_elapsed / 86400);
+        $weeks      = round($time_elapsed / 604800);
+        $months     = round($time_elapsed / 2600640);
+        $years      = round($time_elapsed / 31207680);
+        // Seconds
+        if ($seconds <= 60) {
+            return "$seconds giây trước";
+        }
+        //Minutes
+        else if ($minutes <= 60) {
+            return "$minutes phút trước";
+        }
+        //Hours
+        else if ($hours <= 24) {
+            return "$hours tiếng trước";
+        }
+        //Days
+        else if ($days <= 7) {
+            if ($days == 1) {
+                return "Hôm qua";
+            } else {
+                return "$days ngày trước";
+            }
+        }
+        //Weeks
+        else if ($weeks <= 4.3) {
+            return "$weeks tuần trước";
+        }
+        //Months
+        else if ($months <= 12) {
+            return "$months tháng trước";
+        }
+        //Years
+        else {
+            return "$years năm trước";
+        }
+    }
+
+    function browser_name($user_agent)
+    {
+        if (strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR/')) return 'Opera';
+        elseif (strpos($user_agent, 'Edge')) return 'Edge';
+        elseif (strpos($user_agent, 'Chrome')) return 'Chrome';
+        elseif (strpos($user_agent, 'Safari')) return 'Safari';
+        elseif (strpos($user_agent, 'Firefox')) return 'Firefox';
+        elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
+
+        return 'Other';
     }
 }

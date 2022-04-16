@@ -40,8 +40,16 @@
         }).then((result) => {
             if (result.value) {
                 var amount = $('#amount').val();
+                Swal.fire({
+                    title: 'ĐANG XỬ LÝ',
+                    text: 'Hệ thống đang thực hiện check live tài khoản',
+                    imageUrl: 'https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw340',
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
                 $.ajax({
-                    url: "/modun/buy/post",
+                    url: "/modun/buyv2/post",
                     method: "POST",
                     dataType: "JSON",
                     data: {
@@ -52,44 +60,16 @@
                         if (data.status === "error") {
                             swal(data.message, "error");
                         } else {
-                            toastr["success"]("Hệ thống đang check live", "Thông báo")
-                            setInterval(() => {
-                                checkLive();
-                            }, 1000);
+                            swal(data.message, "success");
+                            setTimeout(function() {
+                                location.href = 'download.php?id=' + data.code
+                            }, 2000)
                         }
                     }
                 });
             }
         });
 
-    }
-
-    function checkLive(key) {
-        $.ajax({
-            url: "/modun/checkLive/post",
-            method: "POST",
-            dataType: "JSON",
-            data: {
-                author: 'DUNGA',
-            },
-            success: function(data) {
-                if (data.status == "error") {
-                    toastr["error"](data.message, "Thông báo")
-                } else if (data.status == "insufficient") {
-                    toastr["error"](data.message, "Thông báo")
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000);
-                } else if (data.status == "success") {
-                    toastr["success"](data.message, "Thông báo")
-                } else if (data.status == "done") {
-                    toastr["success"](data.message, "Thông báo")
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000);
-                }
-            }
-        });
     }
 
     toastr.options = {

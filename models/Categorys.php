@@ -39,5 +39,22 @@ class Category extends Controller
         ]);
     }
 
+    public function editCategory($category, $thumb, $name, $id) {
+        if ($thumb != null || $thumb != '') {
+            $this->update("dga_category", array(
+                'category' => $category,
+                'name' => $name
+            ), " `id` = '$id' ");
+        } else {
+            $this->update("dga_category", array(
+                'category' => $category,
+                'name' => $name,
+                'thumb' => $thumb
+            ), " `id` = '$id' ");
+        }
+    }
 
+    public function removeCategory($id) {
+        $this->remove("dga_category", " `id` = '$id' ");
+    }
 }

@@ -109,6 +109,7 @@ if (isset($_GET['token'])) {
 
                                 <div class="separator mb-6"></div>
                                 <div class="d-flex justify-content-end">
+                                    <a href="/dgaAdmin/edit-product" class="btn btn-info w-100 me-3">Sửa sản phẩm</a>
                                     <a href="/dgaAdmin/home" class="btn btn-light me-3">Hủy</a>
                                     <button type="submit" class="btn btn-primary">
                                         <span class="indicator-label">Thêm</span>
@@ -144,7 +145,8 @@ if (isset($_GET['token'])) {
                                             <td><?= number_format($row['sold']); ?></td>
                                             <td><?= $row['created_at']; ?></td>
                                             <td><a onclick="remove(<?= $row['id']; ?>)" class="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger">Xóa</a>
-                                                <a onclick="show(<?= $row['id']; ?>)" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary">Sửa</a>
+                                                <a href="/dgaAdmin/edit-product?id=<?= $row['id']; ?>" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary">Sửa</a>
+                                                <a href="/dgaAdmin/clone?id=<?= $row['id']; ?>" class="btn btn-outline btn-outline-dashed btn-outline-warning btn-active-light-warning">Xem Clone</a>
                                             </td>
                                         </tr>
                                     <?php } ?>
