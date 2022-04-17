@@ -25,6 +25,7 @@ if (isset($_GET['token'])) {
                             <table id="dga-table" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
                                 <thead>
                                     <tr class="fw-bold fs-6 text-muted">
+                                        <th>ID</th>
                                         <th>NGƯỜI MUA</th>
                                         <th>MÃ ĐƠN</th>
                                         <th>GIÁ</th>
@@ -37,6 +38,7 @@ if (isset($_GET['token'])) {
                                 <tbody>
                                     <?php foreach ((new Controller)->get_list("SELECT * FROM `dga_orders` ORDER BY `id` DESC LIMIT 500") as $row) { ?>
                                         <tr>
+                                            <td><?= $row['id']; ?></td>
                                             <td><span class="badge badge-success"><?= $row['username']; ?></td>
                                             <td><?= $row['code']; ?></td>
                                             <td><?= number_format($row['price']); ?></td>
