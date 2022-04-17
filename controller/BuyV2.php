@@ -60,11 +60,11 @@ if ($_POST) {
             if ($account < $amount) {
                 (new Func)->responseForm1("Số lượng không đủ", "error");
             } else {
-                (new Order)->updateCheck(1, $_SESSION['key']);
+                (new Order)->updateCheck(1, $key);
                 $user = new Users($_SESSION['username']);
                 $history = new History($_SESSION['username']);
-                $history->save($user->info('money'), $product['price'], $user->info('money') - $product['price'], 'Mua ' . $product['amount'] . ' ' . $check['name'] . ' với giá ' . number_format($product['price']));
-                $user->saveBuy($product['price']);
+                $history->save($user->info('money'), $price, $user->info('money') - $price, 'Mua ' . $amount . ' ' . $check['name'] . ' với giá ' . number_format($price));
+                $user->saveBuy($price);
                 if ($user->info('money') < 0) {
                     (new Controller)->query("UPDATE `dga_users` SET `banned` = '1' WHERE `username` = '" . $user->username . "' ");
                 } else {

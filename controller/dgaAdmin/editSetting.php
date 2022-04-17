@@ -17,27 +17,33 @@ if ($_POST) {
 
         if (!($_FILE["logo"]["name"])) {
             $arr = explode(".", $_FILES["logo"]["name"]);
+            if (!empty(end($arr))) {
             $uploads_dir = '../../storage/images';
             $url_thumb = "/logo.". end($arr);
             move_uploaded_file($_FILES['logo']['tmp_name'], $uploads_dir . $url_thumb);
             $logo = "/storage/images".$url_thumb;
             (new Controller)->query("UPDATE `dga_setting` SET `logo` = '$logo' WHERE `id` = '1' ");
+            }
         } 
         if (!($_FILE["favicon"]["name"])) {
             $arr = explode(".", $_FILES["favicon"]["name"]);
+            if (!empty(end($arr))) {
             $uploads_dir = '../../storage/images';
             $url_thumb = "/favicon.". end($arr);
             move_uploaded_file($_FILES['favicon']['tmp_name'], $uploads_dir . $url_thumb);
             $favicon = "/storage/images".$url_thumb;
             (new Controller)->query("UPDATE `dga_setting` SET `favicon` = '$favicon' WHERE `id` = '1' ");
+            }
         } 
         if (!($_FILE["background"]["name"])) {
+            if (!empty(end($arr))) {
             $arr = explode(".", $_FILES["background"]["name"]);
             $uploads_dir = '../../storage/images';
             $url_thumb = "/background.". end($arr);
             move_uploaded_file($_FILES['background']['tmp_name'], $uploads_dir . $url_thumb);
             $background = "/storage/images".$url_thumb;
             (new Controller)->query("UPDATE `dga_setting` SET `background` = '$background' WHERE `id` = '1' ");
+            }
         } 
         (new Func)->responseForm1("Chỉnh sửa thành công", "success");
         
